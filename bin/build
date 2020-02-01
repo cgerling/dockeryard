@@ -1,0 +1,12 @@
+#!/bin/bash
+
+source "$(dirname $0)/args"
+
+BASE_PATH="./images/$IMAGE"
+DOCKERFILE="$BASE_PATH/Dockerfile"
+
+BUILD_ARGS="--force-rm"
+BUILD_CMD="docker build --tag $TAG --file $DOCKERFILE $BUILD_ARGS $CMD_ARGS $BASE_PATH"
+
+eval $BUILD_CMD
+

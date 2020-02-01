@@ -1,0 +1,12 @@
+#!/bin/bash
+
+source "$(dirname $0)/default_values"
+
+IMAGE=$1
+VERSION=$2
+
+shift
+shift
+
+TAG="$REGISTRY/$USER/$REPOSITORY/$IMAGE:$VERSION"
+CMD_ARGS=$@

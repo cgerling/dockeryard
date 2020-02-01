@@ -1,0 +1,6 @@
+#!/bin/bash
+
+USER=$(whoami)
+REPOSITORY="dockeryard"
+REGISTRY="docker.pkg.github.com"
+

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+source "$(dirname $0)/args"
+
+PUSH_CMD="docker push $CMD_ARGS $TAG"
+
+eval $PUSH_CMD
+
