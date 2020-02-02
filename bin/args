@@ -7,6 +7,8 @@ IFS=':' read -ra ARG_VALUES <<< "$1"
 IMAGE=${ARG_VALUES[0]}
 VERSION=${ARG_VALUES[1]}
 
+BASE_PATH="./images/$IMAGE"
+
 if [[ -z $VERSION ]]; then
   VERSION="latest"
 fi
