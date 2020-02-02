@@ -1,6 +1,12 @@
 #!/bin/bash
 
-USER=$(whoami)
-REPOSITORY="dockeryard"
+if [[ -z $OWNER ]]; then
+  OWNER=$(whoami)
+fi
+
+if [[ -z $REPOSITORY ]]; then
+  REPOSITORY="$OWNER/dockeryard"
+fi
+
 REGISTRY="docker.pkg.github.com"
 

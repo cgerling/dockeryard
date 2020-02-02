@@ -1,0 +1,21 @@
+name: release
+
+on: [push]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      REPOSITORY: $GITHUB_REPOSITORY
+      SCRIPTS_PATH: .github/workflows/scripts
+    steps:
+      - uses: actions/checkout@v2
+      - name: build
+        run: . $GITHUB_WORKSPACE/$SCRIPTS_PATH/build_all.sh
+      - name: docker login
+        run: docker login docker.pkg.github.com --username $GITHUB_ACTION --password ${{ secrets.GITHUB_TOKEN }}
+      - name: docker images
+        run: docker images --filter "reference=docker.pkg.github.com/$GITHUB_REPOSITORY/*"
+      - name: push
+        run: . $GITHUB_WORKSPACE/$SCRIPTS_PATH/push_all.sh
+

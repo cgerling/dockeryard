@@ -1,0 +1,12 @@
+#!/bin/bash
+
+ROOT=$GITHUB_WORKSPACE
+
+BIN_PATH="$ROOT/bin"
+IMAGES_PATH="$ROOT/images"
+
+SCRIPT_BUILD="$BIN_PATH/build"
+SCRIPT_PUSH="$BIN_PATH/push"
+
+IMAGES=`ls $IMAGES_PATH`
+
