@@ -7,7 +7,12 @@ IFS=':' read -ra ARG_VALUES <<< "$1"
 IMAGE=${ARG_VALUES[0]}
 VERSION=${ARG_VALUES[1]}
 
+if [[ -z $VERSION ]]; then
+  VERSION="latest"
+fi
+
 shift
 
 TAG="$REGISTRY/$USER/$REPOSITORY/$IMAGE:$VERSION"
 CMD_ARGS=$@
+
