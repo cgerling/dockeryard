@@ -2,10 +2,11 @@
 
 source "$(dirname $0)/default_values"
 
-IMAGE=$1
-VERSION=$2
+IFS=':' read -ra ARG_VALUES <<< "$1"
 
-shift
+IMAGE=${ARG_VALUES[0]}
+VERSION=${ARG_VALUES[1]}
+
 shift
 
 TAG="$REGISTRY/$USER/$REPOSITORY/$IMAGE:$VERSION"
