@@ -9,6 +9,11 @@ VERSION=${ARG_VALUES[1]}
 
 BASE_PATH="./images/$IMAGE"
 
+source "$BASE_PATH/meta.sh"
+if [[ -z $VERSION ]]; then
+  VERSION=$CURRENT_VERSION
+fi
+
 if [[ -z $VERSION ]]; then
   VERSION="latest"
 fi
