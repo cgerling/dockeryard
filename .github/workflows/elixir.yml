@@ -1,0 +1,22 @@
+name: elixir
+
+on:
+  push:
+    paths:
+      - 'images/elixir'
+
+env:
+  IMAGE: elixir
+  IMAGE_PATH: ./images/elixir
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: docker login
+        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login --username "$GITHUB_ACTOR" --password-stdin docker.pkg.github.com
+      - name: build
+        run: docker build --tag "docker.pkg.github.com/${{ github.repository }}/$IMAGE" --file "$IMAGE_PATH/Dockerfile" "$IMAGE_PATH"
+      - name: push
+        run: docker push $(docker images --filter "reference=docker.pkg.github.com/cgerling/dockeryard/$IMAGE" --format "{{.Repository}}:{{.Tag}}")
