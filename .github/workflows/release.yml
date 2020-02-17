@@ -7,11 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     env:
       REPOSITORY: $GITHUB_REPOSITORY
-      SCRIPTS_PATH: .github/workflows/scripts
+      REGISTRY: docker.pkg.github.com
     steps:
       - uses: actions/checkout@v2
       - name: build
-        run: . $GITHUB_WORKSPACE/$SCRIPTS_PATH/build_all.sh
+        run: . $GITHUB_WORKSPACE/bin/build
       - name: docker login
         run: docker login docker.pkg.github.com --username $GITHUB_ACTION --password ${{ secrets.GITHUB_TOKEN }}
       - name: docker images
