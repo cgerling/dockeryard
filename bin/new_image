@@ -1,0 +1,24 @@
+#!/bin/bash
+
+BASE_PATH="$PWD/.."
+WORKFLOW_DIR="$BASE_PATH/.github/workflows"
+IMAGES_DIR="$BASE_PATH/images"
+
+TEMPLATE="$WORKFLOW_DIR/workflow.yml.template"
+
+IMAGE=$(echo $1 | tr '[:upper:]' '[:lower:]')
+IMAGE_DIR="$IMAGES_DIR/$IMAGE"
+
+echo "Create workflow file"
+cat "$TEMPLATE" | sed "s/workflow_template/$IMAGE/g" > "$WORKFLOW_DIR/$IMAGE.yml"   
+
+echo "Create $IMAGE directory"
+mkdir $IMAGE_DIR
+
+echo "Create meta.sh"
+echo "#!/bin/bash" > "$IMAGE_DIR/meta.sh"
+chmod +x "$IMAGE_DIR/meta.sh"
+
+echo "Create Dockerfile"
+touch "$IMAGE_DIR/Dockerfile"
+
