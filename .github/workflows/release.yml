@@ -14,8 +14,6 @@ jobs:
         run: cd $GITHUB_WORKSPACE/bin && . build $GITHUB_WORKFLOW
       - name: docker login
         run: docker login docker.pkg.github.com --username $GITHUB_ACTION --password ${{ secrets.GITHUB_TOKEN }}
-      - name: docker images
-        run: docker images --filter "reference=docker.pkg.github.com/$GITHUB_REPOSITORY/*"
       - name: push
-        run: . $GITHUB_WORKSPACE/$SCRIPTS_PATH/push_all.sh
+        run: cd $GITHUB_WORKSPACE/bin && . push $GITHUB_WORKFLOW
 
