@@ -15,7 +15,7 @@ IFS=':' read -ra ARG_VALUES <<< "$1"
 IMAGE=${ARG_VALUES[0]}
 VERSION=${ARG_VALUES[1]}
 
-BASE_PATH="$PWD/images/$IMAGE"
+BASE_PATH="$PWD/../images/$IMAGE"
 
 source "$BASE_PATH/meta.sh"
 if [[ -z $VERSION ]]; then
