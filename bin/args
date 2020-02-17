@@ -1,13 +1,21 @@
 #!/bin/bash
 
-source "$(dirname $0)/default_values"
+if [[ -z $REPOSITORY ]]; then
+  echo "Variable REPOSITORY is required"
+  exit 1
+fi
+
+if [[ -z $REGISTRY ]]; then
+  echo "Variable REGISTRY is required"
+  exit 1
+fi
 
 IFS=':' read -ra ARG_VALUES <<< "$1"
 
 IMAGE=${ARG_VALUES[0]}
 VERSION=${ARG_VALUES[1]}
 
-BASE_PATH="./images/$IMAGE"
+BASE_PATH="$PWD/images/$IMAGE"
 
 source "$BASE_PATH/meta.sh"
 if [[ -z $VERSION ]]; then
