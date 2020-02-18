@@ -4,7 +4,7 @@ BASE_PATH="$PWD/.."
 WORKFLOW_DIR="$BASE_PATH/.github/workflows"
 IMAGES_DIR="$BASE_PATH/images"
 
-TEMPLATE="$WORKFLOW_DIR/workflow.yml.template"
+TEMPLATE="$BASE_PATH/workflow_template.yml"
 
 IMAGE=$(echo $1 | tr '[:upper:]' '[:lower:]')
 IMAGE_DIR="$IMAGES_DIR/$IMAGE"
