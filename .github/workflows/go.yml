@@ -1,6 +1,12 @@
 name: go
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '.github/workflows/go.yml'
+      - 'images/go/**'
 
 jobs:
   release:

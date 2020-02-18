@@ -1,6 +1,12 @@
 name: elixir
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '.github/workflows/elixir.yml'
+      - 'images/elixir/**'
 
 jobs:
   release:

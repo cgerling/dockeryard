@@ -1,6 +1,12 @@
 name: workflow_template
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '.github/workflows/workflow_template.yml'
+      - 'images/workflow_template/**'
 
 jobs:
   release:
