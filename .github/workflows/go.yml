@@ -1,0 +1,25 @@
+name: go
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '.github/workflows/go.yml'
+      - 'images/go/**'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      REPOSITORY: $GITHUB_REPOSITORY
+      REGISTRY: docker.pkg.github.com
+    steps:
+      - uses: actions/checkout@v2
+      - name: build
+        run: cd $GITHUB_WORKSPACE/bin && . build $GITHUB_WORKFLOW
+      - name: docker login
+        run: docker login docker.pkg.github.com --username $GITHUB_ACTION --password ${{ secrets.GITHUB_TOKEN }}
+      - name: push
+        run: cd $GITHUB_WORKSPACE/bin && . push $GITHUB_WORKFLOW
+

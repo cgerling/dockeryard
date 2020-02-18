@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "$(dirname $0)/args"
+source "$PWD/args"
 
 DOCKERFILE="$BASE_PATH/Dockerfile"
 
