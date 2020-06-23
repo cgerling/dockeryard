@@ -2,8 +2,6 @@ name: scheme
 
 on:
   push:
-    branches:
-      - master
     paths:
       - '.github/workflows/scheme.yml'
       - 'images/scheme/**'
