@@ -1,4 +1,5 @@
 # dockeryard
 
-Where all my Docker stuff rests.
+A personal Docker registry based on GitHub Packages.
+
 
