@@ -32,7 +32,6 @@ function build_image_tag {
   echo "$registry/$owner/$image:$version"
 }
 
-
 function parse_image_expr {
   local image_expr=$1
   IFS=':' read -r name version <<< "$image_expr"
