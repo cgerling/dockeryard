@@ -9,6 +9,7 @@ function find_cmd_file {
   local cmd_name=$1
 
   case "$cmd_name" in
+    'build') echo "$commands_dir/$cmd_name.sh";;
     *) echo "";;
   esac
 }
