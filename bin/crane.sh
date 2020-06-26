@@ -11,7 +11,7 @@ function crane_cmd {
     local cmd_name=$1
 
     case "$cmd_name" in
-      'build' | 'push') echo "$commands_dir/$cmd_name.sh";;
+      'build' | 'push' | 'new') echo "$commands_dir/$cmd_name.sh";;
       *) echo "invalid_command";;
     esac
   }
