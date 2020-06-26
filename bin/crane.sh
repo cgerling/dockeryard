@@ -12,7 +12,7 @@ function crane_cmd {
 
     case "$cmd_name" in
       'build' | 'push') echo "$commands_dir/$cmd_name.sh";;
-      *) echo "";;
+      *) echo "invalid_command";;
     esac
   }
 
@@ -22,9 +22,9 @@ function crane_cmd {
 
     local cmd_args=${@:2}
 
-    if [ -n "$cmd_file" ] && [ -x "$cmd_file" ]; then
+    if [ -x "$cmd_file" ]; then
       exec "$cmd_file" "$cmd_args"
-    else
+    elif [ $cmd_file = 'invalid_command' ]; then
       echo "crane: '$cmd' is not a command."
       echo "Use 'crane --help' to see all commands."
     fi
