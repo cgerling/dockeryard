@@ -7,6 +7,10 @@ on:
     paths:
       - '.github/workflows/elixir.yml'
       - 'images/elixir/**'
+  pull_request:
+    paths:
+      - '.github/workflows/elixir.yml'
+      - 'images/elixir/**'
 
 jobs:
   build:
@@ -22,6 +26,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     needs: build
+    if: ${{ github.event_name == 'push' }}
     env:
       REPOSITORY: $GITHUB_REPOSITORY
       REGISTRY: docker.pkg.github.com
