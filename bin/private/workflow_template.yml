@@ -1,16 +1,16 @@
-name: go
+name: workflow_template
 
 on:
   push:
     branches:
       - master
     paths:
-      - '.github/workflows/go.yml'
-      - 'images/go/**'
+      - '.github/workflows/workflow_template.yml'
+      - 'images/workflow_template/**'
   pull_request:
     paths:
-      - '.github/workflows/go.yml'
-      - 'images/go/**'
+      - '.github/workflows/workflow_template.yml'
+      - 'images/workflow_template/**'
 
 jobs:
   build:
