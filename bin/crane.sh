@@ -3,6 +3,7 @@
 export SCRIPTS_DIR=$(dirname $(realpath "$0"))
 export ROOT_DIR=$(realpath "$SCRIPTS_DIR/..")
 export IMAGES_DIR="$ROOT_DIR/images"
+export WORKFLOWS_DIR="$ROOT_DIR/.github/workflows"
 
 function crane_cmd {
   function find_cmd_file {
