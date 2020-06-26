@@ -7,7 +7,7 @@ on:
       - 'images/scheme/**'
 
 jobs:
-  release:
+  publish:
     runs-on: ubuntu-latest
     env:
       REPOSITORY: $GITHUB_REPOSITORY
