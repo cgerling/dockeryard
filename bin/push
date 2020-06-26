@@ -1,8 +1,0 @@
-#!/bin/bash
-
-source "$PWD/args"
-
-PUSH_CMD="docker push $CMD_ARGS $TAG"
-
-eval $PUSH_CMD
-
