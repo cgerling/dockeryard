@@ -45,13 +45,25 @@ function get_image_version {
   echo "$version"
 }
 
+function build_namespaced_image_tag {
+  local namespace=$1
+  local image_tag=$2
+
+  echo "$namespace/$image_tag"
+}
+
 function build_image_tag {
   local image=$1
   local version=$2
-  local registry=$3
-  local owner=$4
 
-  echo "$registry/$owner/$image:$version"
+  echo "$image:$version"
+}
+
+function build_image_namespace {
+  local registry=$1
+  local owner=$2
+
+  echo "$registry/$owner"
 }
 
 function parse_image_expr {
@@ -60,3 +72,25 @@ function parse_image_expr {
 
   echo "$name" "$version"
 }
+
+function get_image_paths {
+  local base_dir=$1
+  local image_name=$2
+  local image_version=$3
+
+  local image_path="$base_dir/$image_name/*"
+  echo `ls -d1 $image_path | grep "$image_version"`
+}
+
+function convert_image_path_to_tag {
+  local image_path=$1
+
+  IFS='/' read -r -a path_elems <<< "$image_path"
+
+  local path_elems_length=${#path_elems[@]}
+  local image_name="${path_elems[$path_elems_length-2]}"
+  local image_tag="${path_elems[$path_elems_length-1]}"
+
+  echo "$(build_image_tag $image_name $image_tag)"
+}
+
