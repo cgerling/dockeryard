@@ -12,8 +12,8 @@ function build_cmd {
 
   image_version=$(get_image_version $image_version $CURRENT_VERSION)
 
-  local registry="docker.pkg.github.com"
-  local owner="cgerling/dockeryard"
+  local registry=$(get_registry)
+  local owner=$(get_owner)
   local image_tag=$(build_image_tag $image_name $image_version $registry $owner)
 
   local image_path="$IMAGES_DIR/$image_name"
