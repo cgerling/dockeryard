@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-source "$SCRIPTS_DIR/utils/utils.sh"
-
 function new_cmd {
   function create_image_workflow {
     local image_name=$1
