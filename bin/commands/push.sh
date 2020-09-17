@@ -5,20 +5,28 @@ source "$SCRIPTS_DIR/utils/docker.sh"
 
 function push_cmd {
   local image_expr=$1
+  local push_options=${@:2}
 
+  local registry=$(get_registry)
+  local owner=$(get_owner)
+  local image_namespace=$(build_image_namespace $registry $owner)
+  
   IFS=' ' read -r image_name image_version <<< "$(parse_image_expr $image_expr)"
 
-  load_image_metadata $IMAGES_DIR $image_name
+  local image_paths=$(get_image_paths $IMAGES_DIR $image_name $image_version)
 
-  image_version=$(get_image_version $image_version $CURRENT_VERSION)
+  for image_path in $image_paths
+  do
+    image_tag=$(convert_image_path_to_tag $image_path)
+    echo "[$image_tag]"
 
-  local registry="docker.pkg.github.com"
-  local owner="cgerling/dockeryard"
-  local image_tag=$(build_image_tag $image_name $image_version $registry $owner)
+    namespaced_image_tag=$(build_namespaced_image_tag $image_namespace $image_tag)
+    docker_push_cmd=$(build_docker_push_cmd $namespaced_image_tag "$push_options")
 
-  local push_args=${@:2}
+    eval "$docker_push_cmd"
 
-  eval "$(build_docker_push_cmd $image_tag $push_args)"
+    echo -e "\n"
+  done
 }
 
 push_cmd $@
