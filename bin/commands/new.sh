@@ -24,20 +24,18 @@ function new_cmd {
     echo "$image_dir"
   }
 
-  function create_image_metadata {
+  function create_image_version_dir {
     local dir=$1
+    local version=$2
 
-    local metadata_path="$dir/meta.sh"
-    echo "#!/bin/bash" > "$metadata_path"
-    chmod +x "$metadata_path"
+    if [[ -z "$version" ]]; then
+      version="latest"
+    fi
 
-    echo "$metadata_path"
-  }
+    local image_dir="$dir/$version"
+    local dockerfile_path="$image_dir/Dockerfile"
 
-  function create_image_dockerfile {
-    local dir=$1
-
-    local dockerfile_path="$dir/Dockerfile"
+    mkdir "$image_dir"
     touch "$dockerfile_path"
     
     echo "$dockerfile_path"
@@ -45,18 +43,18 @@ function new_cmd {
 
   function run_cmd {
     local name=$1
+    local version=$2
     local image_name=$(echo $name | tr '[:upper:]' '[:lower:]')
 
     local image_dir=$(create_image_dir $IMAGES_DIR $image_name)
-    create_image_metadata $image_dir > /dev/null
-    create_image_dockerfile $image_dir > /dev/null
+    create_image_version_dir $image_dir $version > /dev/null
 
     local template_file="$SCRIPTS_DIR/private/workflow_template.yml"
     local workflow_file="$WORKFLOWS_DIR/$image_name.yml"
     create_image_workflow $image_name $template_file $workflow_file > /dev/null
 
-    echo "Image '$image_name' was created at '$image_dir'"
-    echo "workflow file: $workflow_file"
+    echo "[$image_name] structure created at '$image_dir'"
+    echo "workflow $workflow_file"
   }
 
   run_cmd $@
