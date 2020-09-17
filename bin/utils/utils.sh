@@ -22,13 +22,6 @@ function get_owner {
   echo "$owner"
 }
 
-function load_image_metadata {
-  local images_dir=$1
-  local image_name=$2
-
-  source "$images_dir/$image_name/meta.sh"
-}
-
 function get_image_version {
   local default_version="latest"
   local version=$1
