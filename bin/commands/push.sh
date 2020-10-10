@@ -16,6 +16,8 @@ function push_cmd {
 
   local image_paths=$(get_image_paths $IMAGES_DIR $image_name $image_version)
 
+  set -e
+
   for image_path in $image_paths
   do
     image_tag=$(convert_image_path_to_tag $image_path)
