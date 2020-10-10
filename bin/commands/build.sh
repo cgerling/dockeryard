@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-source "$SCRIPTS_DIR/utils/utils.sh"
 source "$SCRIPTS_DIR/utils/docker.sh"
 source "$SCRIPTS_DIR/utils/environment.sh"
 source "$SCRIPTS_DIR/utils/image.sh"
