@@ -2,6 +2,8 @@
 
 source "$SCRIPTS_DIR/utils/utils.sh"
 source "$SCRIPTS_DIR/utils/docker.sh"
+source "$SCRIPTS_DIR/utils/environment.sh"
+source "$SCRIPTS_DIR/utils/image.sh"
 
 function push_cmd {
   local image_expr=$1
