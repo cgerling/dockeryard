@@ -26,10 +26,6 @@ function new_cmd {
     local dir=$1
     local version=$2
 
-    if [[ -z "$version" ]]; then
-      version="latest"
-    fi
-
     local image_dir="$dir/$version"
     local dockerfile_path="$image_dir/Dockerfile"
 
